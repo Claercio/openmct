@@ -27,6 +27,7 @@ define([
     "./src/controllers/ClockController",
     "./src/controllers/TimerController",
     "./src/controllers/RefreshingController",
+    "./src/actions/FollowTimerAction",
     "./src/actions/StartTimerAction",
     "./src/actions/RestartTimerAction",
     "./src/actions/StopTimerAction",
@@ -41,6 +42,7 @@ define([
     ClockController,
     TimerController,
     RefreshingController,
+    FollowTimerAction,
     StartTimerAction,
     RestartTimerAction,
     StopTimerAction,
@@ -134,6 +136,15 @@ define([
                 }
             ],
             "actions": [
+                {
+                    "key": "timer.follow",
+                    "implementation": FollowTimerAction,
+                    "depends": [],
+                    "category": "contextual",
+                    "name": "Follow Timer",
+                    "cssClass": "icon-clock",
+                    "priority": "optional"
+                },
                 {
                     "key": "timer.start",
                     "implementation": StartTimerAction,
