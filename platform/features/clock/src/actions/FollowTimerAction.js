@@ -32,8 +32,10 @@ define(
          * @constructor
          * @param {ActionContext} context the context for this action
          */
-        function FollowTimerAction(context) {
-            this.domainObject = context.domainObject;
+        function FollowTimerAction(timerService, context) {
+            var domainObject = context.domainObject;
+            this.perform =
+                timerService.setTimer.bind(timerService, [domainObject]);
         }
 
         FollowTimerAction.appliesTo = function (context) {
@@ -42,9 +44,6 @@ define(
                 {};
 
             return model.type === 'timer';
-        };
-
-        FollowTimerAction.prototype.perform = function () {
         };
 
         return FollowTimerAction;

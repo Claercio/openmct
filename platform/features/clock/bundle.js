@@ -154,7 +154,7 @@ define([
                 {
                     "key": "timer.follow",
                     "implementation": FollowTimerAction,
-                    "depends": [],
+                    "depends": ["timerService"],
                     "category": "contextual",
                     "name": "Follow Timer",
                     "cssClass": "icon-clock",
