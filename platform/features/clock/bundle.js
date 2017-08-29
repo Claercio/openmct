@@ -25,6 +25,7 @@ define([
     "./src/indicators/ClockIndicator",
     "./src/indicators/FollowIndicator",
     "./src/services/TickerService",
+    "./src/services/TimerService",
     "./src/controllers/ClockController",
     "./src/controllers/TimerController",
     "./src/controllers/RefreshingController",
@@ -41,6 +42,7 @@ define([
     ClockIndicator,
     FollowIndicator,
     TickerService,
+    TimerService,
     ClockController,
     TimerController,
     RefreshingController,
@@ -97,6 +99,13 @@ define([
                     "depends": [
                         "$timeout",
                         "now"
+                    ]
+                },
+                {
+                    "key": "timerService",
+                    "implementation": TimerService,
+                    "depends": [
+                        "openmct"
                     ]
                 }
             ],
