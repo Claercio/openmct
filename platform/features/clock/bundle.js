@@ -23,6 +23,7 @@
 define([
     "moment-timezone",
     "./src/indicators/ClockIndicator",
+    "./src/indicators/FollowIndicator",
     "./src/services/TickerService",
     "./src/controllers/ClockController",
     "./src/controllers/TimerController",
@@ -38,6 +39,7 @@ define([
 ], function (
     MomentTimezone,
     ClockIndicator,
+    FollowIndicator,
     TickerService,
     ClockController,
     TimerController,
@@ -82,6 +84,10 @@ define([
                         "CLOCK_INDICATOR_FORMAT"
                     ],
                     "priority": "preferred"
+                },
+                {
+                    "implementation": FollowIndicator,
+                    "priority": "fallback"
                 }
             ],
             "services": [
