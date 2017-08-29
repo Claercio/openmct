@@ -100,7 +100,7 @@ define(
                     anchor,
                     activeInterval,
                     position,
-                    splitterSize,
+                    splitterSize, 
 
                     alias = $attrs.alias !== undefined ?
                       "mctSplitPane-" + $attrs.alias : undefined,
@@ -108,7 +108,7 @@ define(
                     //convert string to number from localStorage
                     userWidthPreference = $window.localStorage.getItem(alias) === null ?
                       undefined : Number($window.localStorage.getItem(alias));
-
+              
                 // Get relevant size (height or width) of DOM element
                 function getSize(domElement) {
                     return (anchor.orientation === 'vertical' ?
@@ -117,9 +117,10 @@ define(
 
                 // Apply styles to child elements
                 function updateChildren(children) {
-                    position = userWidthPreference || position;
+                    if (alias) {
+                        position = userWidthPreference || position;
+                    }                  
                     
-
                     // Pick out correct elements to update, flowing from
                     // selected anchor edge.
                     var first = children.eq(anchor.reversed ? 2 : 0),
