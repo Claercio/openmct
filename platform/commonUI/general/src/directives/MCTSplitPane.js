@@ -119,8 +119,8 @@ define(
                 function updateChildren(children) {
                     if (alias) {
                         position = userWidthPreference || position;
-                    }                  
-                    
+                    }
+
                     // Pick out correct elements to update, flowing from
                     // selected anchor edge.
                     var first = children.eq(anchor.reversed ? 2 : 0),
@@ -175,7 +175,7 @@ define(
                         if (positionParsed.assign) {
                             positionParsed.assign($scope, position);
                         }
-                    } 
+                    }
 
                     return position;
                 }
@@ -228,14 +228,13 @@ define(
                     anchor: function () {
                         return anchor;
                     },
-                    position: function (initialValue, newValue) {
-                        if(arguments.length === 0){
+                    position: function (newPosition) {
+                        if (arguments.length === 0) {
                             return getSetPosition();
                         }
-                        if (initialValue !== newValue) {
-                            setUserWidthPreference(newValue);
-                            getSetPosition(newValue);
-                        }
+
+                        setUserWidthPreference(newPosition);
+                        return getSetPosition(newPosition);
                     },
                     startResizing: function () {
                         toggleClass('resizing');
