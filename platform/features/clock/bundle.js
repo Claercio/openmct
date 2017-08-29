@@ -89,6 +89,7 @@ define([
                 },
                 {
                     "implementation": FollowIndicator,
+                    "depends": ["timerService"],
                     "priority": "fallback"
                 }
             ],

@@ -35,7 +35,7 @@ define(
         function FollowTimerAction(timerService, context) {
             var domainObject = context.domainObject;
             this.perform =
-                timerService.setTimer.bind(timerService, [domainObject]);
+                timerService.setTimer.bind(timerService, domainObject);
         }
 
         FollowTimerAction.appliesTo = function (context) {

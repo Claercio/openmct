@@ -23,6 +23,7 @@
 define(
     ['moment'],
     function (moment) {
+        var NO_TIMER = "No timer being followed."
 
         /**
          * Indicator that displays the active timer, as well as its
@@ -30,7 +31,8 @@ define(
          * @implements {Indicator}
          * @memberof platform/features/clock
          */
-        function FollowIndicator() {
+        function FollowIndicator(timerService) {
+            this.timerService = timerService;
         }
 
         FollowIndicator.prototype.getGlyphClass = function () {
@@ -42,7 +44,8 @@ define(
         };
 
         FollowIndicator.prototype.getText = function () {
-            return "No timer being followed";
+            var timer = this.timerService.getTimer();
+            return timer ? timer.getModel().name : NO_TIMER;
         };
 
         FollowIndicator.prototype.getDescription = function () {
