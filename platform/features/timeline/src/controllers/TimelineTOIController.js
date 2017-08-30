@@ -42,7 +42,6 @@ define([], function () {
 
         $scope.$watch('zoomController', function (zoomController) {
             this.zoomController = zoomController;
-            $scope.$apply();
         }.bind(this));
     }
 
