@@ -134,6 +134,12 @@
                 </mct-include>
             </div>
 
+            <div ng-controller="TimelineTOIController as toiController">
+                <div ng-if="toiController.isActive()"
+                     ng-style="{ left: toiController.x() + 'px', width: '4px', top: '0px', height: '30px', background: 'blue', position: 'absolute' }">
+                </div>
+            </div>
+
             <div class="t-swimlanes-holder l-swimlanes-holder"
                  mct-scroll-x="scroll.x"
                  mct-scroll-y="scroll.y">

@@ -36,7 +36,7 @@ define([], function () {
 
         openmct.time.on('tick', function (timestamp) {
             this.timestamp = timestamp;
-            // $scope.scroll.x = this.timeOfInterestX();
+            // $scope.scroll.x = this.x();
             $scope.$apply();
         }.bind(this));
 
@@ -46,7 +46,7 @@ define([], function () {
         }.bind(this));
     }
 
-    TimelineTOIController.prototype.timeOfInterestX = function () {
+    TimelineTOIController.prototype.x = function () {
         if (!this.timer || !this.zoomController || isNaN(this.timestamp)) {
             return undefined;
         }
@@ -56,7 +56,7 @@ define([], function () {
     };
 
     TimelineTOIController.prototype.isActive = function () {
-        return !!this.timer && !isNaN(this.timestamp);
+        return this.x() !== undefined;
     };
 
     return TimelineTOIController;
