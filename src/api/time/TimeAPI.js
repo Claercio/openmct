@@ -329,6 +329,7 @@ define(['EventEmitter'], function (EventEmitter) {
 
         this.boundsVal = newBounds;
         this.emit('bounds', this.boundsVal, true);
+        this.emit('tick', timestamp);
 
         // If a bounds change results in a TOI outside of the current
         // bounds, unset it
