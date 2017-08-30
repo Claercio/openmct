@@ -166,7 +166,8 @@ define(
                 // Getter-setter for the pixel offset of the splitter,
                 // relative to the current edge.
                 function getSetPosition(value) {
-                    if (typeof value === 'number') {
+                    var prior = position;
+                    if (typeof value === 'number' && prior !== prior) {
                         position = value;
                         enforceExtrema();
                         updateElementPositions();
