@@ -208,32 +208,48 @@ define(['./TimeAPI'], function (TimeAPI) {
 
         });
 
-        it("on tick, observes offsets, and indicates tick in bounds callback", function () {
-            var mockTickSource = jasmine.createSpyObj("clock", [
-                "on",
-                "off",
-                "currentValue"
-            ]);
-            mockTickSource.currentValue.andReturn(100);
-            var tickCallback;
-            var boundsCallback = jasmine.createSpy("boundsCallback");
-            var clockOffsets = {
-                start: -100,
-                end: 100
-            };
-            mockTickSource.key = "mts";
+        describe("on tick", function () {
+            var boundsCallback, tickCallback, clockOffsets, tickValue;
 
-            api.addClock(mockTickSource);
-            api.clock("mts", clockOffsets);
+            beforeEach(function () {
+                var mockTickSource = jasmine.createSpyObj("clock", [
+                    "on",
+                    "off",
+                    "currentValue"
+                ]);
+                mockTickSource.currentValue.andReturn(100);
 
-            api.on("bounds", boundsCallback);
+                boundsCallback = jasmine.createSpy("boundsCallback");
+                tickCallback = jasmine.createSpy("tickCallback");
+                clockOffsets = {
+                    start: -100,
+                    end: 100
+                };
+                tickValue = 12321;
 
-            tickCallback = mockTickSource.on.mostRecentCall.args[1];
-            tickCallback(1000);
-            expect(boundsCallback).toHaveBeenCalledWith({
-                start: 900,
-                end: 1100
-            }, true);
+                mockTickSource.key = "mts";
+
+                api.addClock(mockTickSource);
+                api.clock("mts", clockOffsets);
+
+                api.on("bounds", boundsCallback);
+                api.on("tick", tickCallback);
+
+                var internalTickCallback =
+                    mockTickSource.on.mostRecentCall.args[1];
+                internalTickCallback(tickValue);
+            });
+
+            it("emits a bounds callback accounting for clock offsets", function () {
+                expect(boundsCallback).toHaveBeenCalledWith({
+                    start: clockOffsets.start + tickValue,
+                    end: clockOffsets.end + tickValue
+                }, true);
+            });
+
+            it("emits a tick event", function () {
+                expect(tickCallback).toHaveBeenCalledWith(tickValue);
+            });
         });
     });
 });
