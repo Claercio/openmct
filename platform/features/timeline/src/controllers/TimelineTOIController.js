@@ -31,13 +31,11 @@ define([], function () {
 
         timerService.on('change', function () {
             this.timer = timerService.getTimer();
-            $scope.$apply();
         }.bind(this));
 
         openmct.time.on('tick', function (timestamp) {
             this.timestamp = timestamp;
             // $scope.scroll.x = this.x();
-            $scope.$apply();
         }.bind(this));
 
         $scope.$watch('zoomController', function (zoomController) {
