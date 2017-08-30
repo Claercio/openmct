@@ -23,7 +23,7 @@
 define(
     ['moment'],
     function (moment) {
-        var NO_TIMER = "No timer being followed."
+        var NO_TIMER = "No timer being followed.";
 
         /**
          * Indicator that displays the active timer, as well as its
