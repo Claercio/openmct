@@ -228,7 +228,7 @@ define(
                 });
 
                 describe("user clicks on imagery thumbnail", function () {
-                    var mockDatum = { utc: 1434600258123, url: 'some/url', selected:false};
+                    var mockDatum = { utc: 1434600258123, url: 'some/url', selected: false};
 
                     it("pauses and adds selected class to imagery thumbnail", function () {
                         controller.setSelectedImage(mockDatum);
